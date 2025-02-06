@@ -1,7 +1,7 @@
 'use client';
 import Form from "./components/Form";
 import Image from 'next/image';
-import logo from './test-vocacional-iaes-fundacion-lapacho/logo.png';
+import logo from './images/logo.png';
 
 export default function Home() {
   return (
