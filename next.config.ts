@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: 'export',
   distDir: 'dist',
-  basePath: isProd ? '/test-vocacional-iaes-fundacion-lapacho/' : '',
-  assetPrefix: isProd ? '/test-vocacional-iaes-fundacion-lapacho/' : '',
+  basePath: isProd ? '/test-vocacional-iaes-fundacion-lapacho' : '',
+  assetPrefix: isProd ? '/test-vocacional-iaes-fundacion-lapacho' : '',
   images: {
     unoptimized: true,
   },
