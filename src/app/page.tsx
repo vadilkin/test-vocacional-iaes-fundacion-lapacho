@@ -1,14 +1,19 @@
 'use client';
 import Form from "./components/Form";
 import Image from 'next/image';
-import logo from './images/logo.png';
 
 export default function Home() {
   return (
     <>
       <header className="p-5 flex justify-center items-center ">
         <div className=" flex flex-col justify-center items-center">
-        <Image src={logo} alt="iaes-fl-logo" width={200} height={150} />
+        <Image 
+          src="/images/logo.png" 
+          alt="iaes-fl-logo" 
+          width={200} 
+          height={150}
+          priority
+        />
         <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Conocé a detalle las carreras en nuestra web: <a href="https://www.iaes.edu.ar/" target="_blank" rel="noopener" className="text-blue-700">IAES WEBSITE</a>
         </h1>
