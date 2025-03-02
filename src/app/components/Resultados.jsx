@@ -28,7 +28,7 @@ const obtenerDetalles = (resultado) => {
         ),
         estiloDeVida: "📌 Ideal para personas organizadas y con visión emprendedora.",
         salidasLaborales: "Empresas privadas, Organismos Públicos o Emprendimientos Propios.",
-        materiasClave: "Costos y Presupuestos, Contabilidad, Liquidación de Sueldos, Pasantías Profesionales I y II.",
+        materiasClave: "Administración de Empresas, Costos y Presupuestos, Contabilidad, Liquidación de Sueldos, Pasantías Profesionales I y II.",
       };
     case "B":
       return {
