@@ -103,7 +103,7 @@ export default function Form() {
           {questions[currentQuestion].options.map((option, index) => (
             <button
               key={index}
-              className="block w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-4 my-2 rounded-lg focus:outline-none"
+              className="block w-full bg-orange-500 md:hover:bg-orange-600 active:bg-orange-600 text-white font-medium py-2 px-4 my-2 rounded-lg focus:outline-none transition-colors"
               onClick={() => handleAnswer(option.value)}
             >
               {option.text}
