@@ -47,7 +47,7 @@ const Resultados = ({ resultado }) => {
             <span>
               Esta carrera te prepara para analizar y desarrollar sistemas informáticos. Aprenderás sobre{" "}
               <a
-                href="https://www.iaes.edu.ar/carreras/analisis-de-sistemas"
+                href="https://iaes.edu.ar/analista-de-sistemas/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary-dark underline"
@@ -76,7 +76,7 @@ const Resultados = ({ resultado }) => {
             <span>
               Esta carrera te prepara para asesorar, planificar, desarrollar, coordinar y controlar actividades de importación y exportación, vinculadas al sector público y privado. Aprenderás sobre{" "}
               <a
-                href="https://www.iaes.edu.ar/carreras/regimen-aduanero"
+                href="https://iaes.edu.ar/tecnico-superior-en-regimen-aduanero/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:text-primary-dark underline"
