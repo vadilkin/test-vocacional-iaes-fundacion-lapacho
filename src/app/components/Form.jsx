@@ -1,6 +1,7 @@
 import { useState } from "react";
-import  Progress  from "./ui/Progress";
+import Progress from "./ui/Progress";
 import Resultados from "./Resultados";
+import { motion, AnimatePresence } from 'framer-motion';
 
 const questions = [
   {
@@ -69,6 +70,8 @@ export default function Form() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [result, setResult] = useState(null);
+  const [activeButton, setActiveButton] = useState(null);
+  const [direction, setDirection] = useState(0);
 
   const handleAnswer = (value) => {
     const newAnswers = [...answers, value];
@@ -77,6 +80,7 @@ export default function Form() {
     if (newAnswers.length === questions.length) {
       calculateResult(newAnswers);
     } else {
+      setDirection(1);
       setCurrentQuestion(currentQuestion + 1);
     }
   };
@@ -94,24 +98,71 @@ export default function Form() {
     setResult(recommendedCareer);
   };
 
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0
+    })
+  };
+
   return (
-    <div className="w-full max-w-lg mx-auto p-6 bg-white rounded-xl shadow-md">
+    <div className="w-full max-w-2xl mx-auto">
       {!result ? (
-        <>
-          <Progress value={((currentQuestion + 1) / questions.length) * 100} className="mb-4" />
-          <h2 className="text-lg font-semibold mb-4">{questions[currentQuestion].question}</h2>
-          {questions[currentQuestion].options.map((option, index) => (
-            <button
-              key={index}
-              className="block w-full bg-orange-500 md:hover:bg-orange-600 active:bg-orange-600 text-white font-medium py-2 px-4 my-2 rounded-lg focus:outline-none transition-colors"
-              onClick={() => handleAnswer(option.value)}
+        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+          <Progress value={((currentQuestion + 1) / questions.length) * 100} className="mb-8" />
+          <AnimatePresence initial={false} custom={direction}>
+            <motion.div
+              key={currentQuestion}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 }
+              }}
             >
-              {option.text}
-            </button>
-          ))}
-        </>
+              <h2 className="text-xl sm:text-2xl font-semibold text-secondary mb-6">
+                {questions[currentQuestion].question}
+              </h2>
+              <div className="space-y-4">
+                {questions[currentQuestion].options.map((option, index) => (
+                  <motion.button
+                    key={index}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`w-full bg-white border-2 border-primary text-primary font-medium py-3 px-6 rounded-xl focus:outline-none transition-all duration-200 text-left
+                      ${activeButton === index ? 'bg-primary text-white shadow-lg' : 'md:hover:bg-primary md:hover:text-white'}`}
+                    onClick={() => handleAnswer(option.value)}
+                    onTouchStart={() => setActiveButton(index)}
+                    onTouchEnd={() => setActiveButton(null)}
+                  >
+                    {option.text}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
       ) : (
-        <Resultados resultado={result} />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Resultados resultado={result} />
+        </motion.div>
       )}
     </div>
   );
